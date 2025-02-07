@@ -1,0 +1,86 @@
+nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 10px black;
+  padding: 0.4rem 19rem;
+  background-color: var(--pico-background-color);
+  opacity: 0.8;
+  align-items: center;
+  min-width: 20rem;
+}
+
+nav .dropdown-top-margin {
+  margin-top: 0.45rem !important;
+}
+
+nav #sidebar-active {
+  display: none !important;
+}
+
+nav #nav-right {
+  display: flex;
+  flex-direction: row;
+}
+
+nav #overlay {
+  display: none;
+}
+
+@media (max-width: 1350px) {
+  nav {
+    padding: 0.4rem 8rem;
+  }
+}
+
+@media (max-width: 992px) {
+  nav {
+    padding: 0.4rem 3rem;
+  }
+
+  nav #nav-right {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 65vw;
+    height: 100vh;
+    background-color: black;
+    box-shadow: -5px 0 10px var(--pico-background-color);
+    flex-direction: column;
+    align-items: start;
+    padding: 1rem 2rem;
+    transition: 0.7s ease-out;
+  }
+
+  nav .burger-menu {
+    background: url("./burger-menu.svg") no-repeat;
+    background-size: cover;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    margin: 0 !important;
+  }
+
+  nav .close-btn {
+    background: url("./close.svg") no-repeat;
+    background-size: cover;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    margin-top: 0.5rem;
+  }
+
+  nav #sidebar-active:checked ~ #nav-right {
+    right: 0;
+  }
+
+  nav #sidebar-active:checked ~ #overlay {
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+}

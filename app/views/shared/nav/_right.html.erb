@@ -1,0 +1,58 @@
+<ul id="nav-right">
+  <label for="sidebar-active" class="close-btn"></label>
+  <li>
+    <strong>
+      <%= link_to "Articles", "#" %>
+    </strong>
+  </li>
+  <li>
+    <strong>
+      <%= link_to "Bloggers", "#" %>
+    </strong>
+  </li>
+  <li class="dropdown-top-margin">
+    <details class="dropdown">
+      <summary role="button" class="outline">
+        <strong>Categories</strong>
+      </summary>
+      <ul>
+        <li><%= link_to "All articles", "#" %></li>
+        <hr>
+        <li>Placeholder</li>
+        <li>Placeholder</li>
+      </ul>
+    </details>
+  </li>
+  <li class="dropdown-top-margin">
+    <details class="dropdown">
+      <summary role="button" class="outline">
+        <strong>Actions</strong>
+      </summary>
+      <ul>
+        <li><%= link_to "Add new article", "#" %></li>
+        <li><%= link_to "Add new category", "#" %></li>
+      </ul>
+    </details>
+  </li>
+  <li class="dropdown-top-margin">
+    <details class="dropdown">
+      <summary role="button" class="outline">
+        <strong>Account actions</strong>
+      </summary>
+      <ul dir="rtl">
+        <li class="pico-color-grey-500">
+          <cite>user email</cite>
+        </li>
+        <li>
+          <%= link_to "Edit your profile", "#" %>
+        </li>
+        <li>
+          <%= link_to "View your profile", "#" %>
+        </li>
+        <li>
+          <%= link_to "Logout", "#" %>
+        </li>
+      </ul>
+    </details>
+  </li>
+</ul>

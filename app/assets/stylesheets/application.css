@@ -16,3 +16,31 @@ html {
 a {
   text-decoration: none;
 }
+
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("./bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 53%;
+  height: 100vh;
+}
+
+nav {
+  z-index: 1;
+}
+
+label {
+  background-color: var(--pico-form-element-background-color);
+  padding: 0 var(--pico-spacing);
+  border-radius: var(--pico-border-radius);
+  width: fit-content;
+}
+
+article,
+nav,
+input,
+textarea,
+label {
+  opacity: 0.7;
+}

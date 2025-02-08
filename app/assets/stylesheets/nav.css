@@ -5,7 +5,6 @@ nav {
   box-shadow: 0 0 10px black;
   padding: 0.4rem 19rem;
   background-color: var(--pico-background-color);
-  opacity: 0.8;
   align-items: center;
   min-width: 20rem;
 }

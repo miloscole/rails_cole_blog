@@ -1,0 +1,24 @@
+<% articles.each do |article| %>
+  <article>
+    <header class='flex-between'>
+      <h4 class='margin-0'>
+        <%= link_to "#{article.title}", article_path(article) %>
+      </h4>
+      <span>
+        <mark>Placeholder(category) </mark>
+      </span>
+    </header>
+    <%= truncate(article.content, length: 200) %>
+    <footer class='flex-between'>
+      <span>
+        <%= link_to "Edit", edit_article_path(article) %> |
+        <%= link_to "Delete", article_path(article), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+      </span>
+      <small>
+        Created by: (miloscole-Placeholder),
+        <%= time_ago_in_words(article.created_at) %> ago,
+        last updated: <%= time_ago_in_words(article.updated_at) %> ago
+      </small>
+    </footer>
+  </article>
+<% end %>

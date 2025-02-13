@@ -1,27 +1,30 @@
-<%= custom_line_break %>
-<div class="container">
-  <article>
-    <h3 class="margin-unset"><%= @article.title %></h3>
-  </article>
-  <article>
-    <p><strong>Created by: Placeholder</strong></p>
-  </article>
-  <article>
-    <header>
-      <br>
-      <div  class = "flex-between">
-        <span>Actions(comment, share)</span>
-        <span>
-          Placeholder(categories)
-        </span>
-      </div>
-      <br>
-    </header>
-    <p><%= simple_format(@article.content) %></p>
-    <footer class="flex">
-      <%= link_to "Edit", edit_article_path(@article)%> |
-      <%= link_to "Delete", article_path(@article), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %> |
-      <%= link_to "Back to articles", articles_path%>
-    </footer>
-  </article>
-</div>
+<article>
+  <h3 class="margin-unset"><%= @article.title %></h3>
+</article>
+<article>
+  <h6 class="margin-unset">Created by: <%= link_to "#{@article.user&.username}", user_path(@article.user) %></h6>
+</article>
+<article>
+  <header>
+    <br>
+    <div class="flex-between">
+      <span>Actions(comment, share)</span>
+      <span>
+        Placeholder(categories)
+      </span>
+    </div>
+    <br>
+  </header>
+  <p><%= simple_format(@article.content) %></p>
+  <footer class='article-header-footer-positioning'>
+    <span class="padding-y-small">
+      <% if show_action_buttons? @article %>
+        <%= link_to "Edit", edit_article_path(@article) %> |
+        <%= link_to "Delete", article_path(@article), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+      <% end %>
+    </span>
+    <span class="padding-y-small">
+      <%= link_to "View all articles", articles_path%>
+    </span>
+  </footer>
+</article>

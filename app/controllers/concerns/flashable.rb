@@ -2,6 +2,7 @@ module Flashable
   extend ActiveSupport::Concern
 
     def notice(options = {})
+      flash = handle_flash_time_execution options[:now]
       return flash["notice"] = options[:custom] unless options[:custom].nil?
       return flash["notice"] = "Action succeeded!" if options[:basic]
 
@@ -11,7 +12,14 @@ module Flashable
       flash["notice"] = "#{resource} #{options[:with]} was successfully #{action}d!"
     end
 
-    def alert(custom = nil)
-      flash["alert"] = custom || "Something went wrong, please try again"
+    def alert(options = {})
+      flash = handle_flash_time_execution options[:now]
+      flash["alert"] = options[:custom_msg] || "Something went wrong, please try again"
+    end
+
+    private
+
+    def handle_flash_time_execution(msg)
+      msg ? flash.now : flash
     end
 end

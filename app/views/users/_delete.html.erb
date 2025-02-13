@@ -1,0 +1,4 @@
+<article class="flex-column">
+  <h6 align="center"><mark> &#10071; Perform this action with caution! After deleting your account, we can not recover it!</mark></h6>
+  <%= link_to "Delete Your Account", user_path(user), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},  role: :button, class: "secondary" %>
+</article>

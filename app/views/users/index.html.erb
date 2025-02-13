@@ -1,0 +1,25 @@
+<%= page_title custom_text: "Bloggers" %>
+<% @users.each do |user| %>
+  <article>
+    <header class='article-header-footer-positioning'>
+      <h4 class="margin-0 padding-y-small">
+        <%= link_to "#{user.username}", user_path(user) %>
+      </h4>
+    </header>
+    <%= user.email %>
+    <footer class='article-header-footer-positioning'>
+      <p class="margin-0 padding-y-small">
+        <% if show_delete_button? user %>
+          <%= link_to "Delete", user_path(user), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+        <% end %>
+        <% if logged_in? && user.admin? %>
+          (ADMIN)
+        <% end %>
+      </p>
+      <small>
+        <%= pluralize(user.articles&.size, 'article') %>
+      </small>
+    </footer>
+  </article>
+<% end %>
+<%= render 'shared/pagination', objects: @users %>

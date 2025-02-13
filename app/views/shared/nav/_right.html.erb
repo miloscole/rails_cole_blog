@@ -1,15 +1,13 @@
 <ul id="nav-right">
   <label for="sidebar-active" class="close-btn"></label>
-  <li>
-    <strong>
+  <strong>
+    <li>
       <%= link_to "Articles", articles_path %>
-    </strong>
-  </li>
-  <li>
-    <strong>
-      <%= link_to "Bloggers", "#" %>
-    </strong>
-  </li>
+    </li>
+    <li>
+      <%= link_to "Bloggers", users_path %>
+    </li>
+  </strong>
   <li class="dropdown-top-margin">
     <details class="dropdown">
       <summary role="button" class="outline">
@@ -34,25 +32,36 @@
       </ul>
     </details>
   </li>
-  <li class="dropdown-top-margin">
-    <details class="dropdown">
-      <summary role="button" class="outline">
-        <strong>Account actions</strong>
-      </summary>
-      <ul dir="rtl">
-        <li class="pico-color-grey-500">
-          <cite>user email</cite>
-        </li>
-        <li>
-          <%= link_to "Edit your profile", "#" %>
-        </li>
-        <li>
-          <%= link_to "View your profile", "#" %>
-        </li>
-        <li>
-          <%= link_to "Logout", "#" %>
-        </li>
-      </ul>
-    </details>
-  </li>
+  <% if logged_in? %>
+    <li class="dropdown-top-margin">
+      <details class="dropdown">
+        <summary role="button" class="outline">
+          <strong>Account</strong>
+        </summary>
+        <ul dir="rtl">
+          <li>
+            <mark><cite><%= current_user.email %></cite></mark>
+          </li>
+          <li>
+            <%= link_to "Edit your profile", edit_user_path(current_user) %>
+          </li>
+          <li>
+            <%= link_to "View your profile", user_path(current_user) %>
+          </li>
+          <li>
+            <%= link_to "Logout", signin_path, data: {turbo_method: :delete } %>
+          </li>
+        </ul>
+      </details>
+    </li>
+  <% else %>
+    <strong>
+      <li>
+        <%= link_to "Sign in", signin_path %>
+      </li>
+      <li>
+        <%= link_to "Sign up", new_user_path %>
+      </li>
+    </strong>
+  <% end %>
 </ul>

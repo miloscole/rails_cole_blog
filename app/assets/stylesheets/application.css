@@ -22,12 +22,19 @@ body {
     url("./bg.png");
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-position: 53%;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 nav {
   z-index: 1;
+  opacity: 0.8;
+}
+
+hr {
+  width: inherit;
+  margin: 0.4rem 0 !important;
 }
 
 label {
@@ -38,7 +45,6 @@ label {
 }
 
 article,
-nav,
 input,
 textarea,
 label {

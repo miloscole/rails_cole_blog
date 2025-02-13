@@ -1,24 +1,25 @@
 <% articles.each do |article| %>
   <article>
-    <header class='flex-between'>
-      <h4 class='margin-0'>
+    <header class='article-header-footer-positioning'>
+      <h4 class="margin-0 padding-y-small">
         <%= link_to "#{article.title}", article_path(article) %>
       </h4>
-      <span>
-        <mark>Placeholder(category) </mark>
-      </span>
+      <mark>Placeholder(category) </mark>
     </header>
     <%= truncate(article.content, length: 200) %>
-    <footer class='flex-between'>
-      <span>
-        <%= link_to "Edit", edit_article_path(article) %> |
-        <%= link_to "Delete", article_path(article), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-      </span>
+    <footer class='article-header-footer-positioning'>
+      <p class="margin-0 padding-y-small">
+        <% if show_action_buttons? article%>
+          <%= link_to "Edit", edit_article_path(article) %> |
+          <%= link_to "Delete", article_path(article), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+        <% end %>
+      </p>
       <small>
-        Created by: (miloscole-Placeholder),
+        Created by: <%= article.user&.username %>,
         <%= time_ago_in_words(article.created_at) %> ago,
         last updated: <%= time_ago_in_words(article.updated_at) %> ago
       </small>
     </footer>
   </article>
 <% end %>
+<%= render 'shared/pagination', objects: articles %>

@@ -1,10 +1,8 @@
 <%= page_title custom_text: "Sign In"%>
 <br>
 <%= form_with url: signin_path do |f| %>
-  <div><%= f.label :email %></div>
-  <div><%= f.email_field :email, required: true, placeholder: 'example@example.com' %></div>
-  <div><%= f.label :password%></div>
-  <div><%= f.password_field :password, required: true, autocomplete: "new-password"  %></div>
+  <%= f.email_field :email, required: true, placeholder: true %>
+  <%= f.password_field :password, required: true, autocomplete: "new-password", placeholder: true %>
   <br>
   <%= f.submit 'Sign in' %>
 <% end %>

@@ -4,12 +4,12 @@ class UsersController < ApplicationController
   before_action :require_account_owner, only: [ :edit, :update ]
 
   def index
-    @users = User.paginate(page: params[:page], per_page: 2)
+    @users = User.paginate(page: params[:page], per_page: 5)
   end
 
 
   def show
-    @user_articles = @user.articles.paginate(page: params[:page], per_page: 3)
+    @user_articles = @user.articles.paginate(page: params[:page], per_page: 5)
   end
 
   def new

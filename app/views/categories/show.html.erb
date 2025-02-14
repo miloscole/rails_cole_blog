@@ -1,0 +1,9 @@
+<nav class="padding-x-medium" aria-label="breadcrumb" style="--pico-nav-breadcrumb-divider: '🐧'">
+  <ul>
+    <li><%= link_to 'Categories', categories_path %></li>
+    <li><%= @category.name %></li>
+  </ul>
+</nav>
+<hr>
+<%= render 'articles/articles', articles: @category_articles %>
+<%= will_paginate @category_articles %>

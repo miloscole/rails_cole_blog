@@ -8,7 +8,10 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-
-50.times do |num|
-  Article.create title: "Title #{num}", content: "Some Content #{num}"
+50.times do
+  Article.create(
+    title: Faker::Book.title,
+    content: Faker::Lorem.paragraph(sentence_count: 5),
+    user_id: rand(17..29),
+  )
 end

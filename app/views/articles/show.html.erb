@@ -10,7 +10,9 @@
     <div class="flex-between">
       <span>Actions(comment, share)</span>
       <span>
-        Placeholder(categories)
+        <% @article.categories&.each do |category| %>
+          <mark><%= category.name %></mark>
+        <% end %>
       </span>
     </div>
     <br>

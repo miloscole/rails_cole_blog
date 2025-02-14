@@ -4,7 +4,11 @@
       <h4 class="margin-0 padding-y-small">
         <%= link_to "#{article.title}", article_path(article) %>
       </h4>
-      <mark>Placeholder(category) </mark>
+      <span>
+        <% article.categories.each do |category| %>
+          <mark><%= category.name %></mark>
+        <% end %>
+      </span>
     </header>
     <%= truncate(article.content, length: 200) %>
     <footer class='article-header-footer-positioning'>
@@ -22,4 +26,4 @@
     </footer>
   </article>
 <% end %>
-<%= render 'shared/pagination', objects: articles %>
+<%= will_paginate articles %>

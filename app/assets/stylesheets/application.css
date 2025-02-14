@@ -17,36 +17,12 @@ a {
   text-decoration: none;
 }
 
-body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    url("./bg.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: 53%;
-  min-height: 100vh;
-}
-
 nav {
-  z-index: 1;
   opacity: 0.8;
+  background-color: var(--pico-background-color);
 }
 
 hr {
   width: inherit;
   margin: 0.4rem 0 !important;
-}
-
-label {
-  background-color: var(--pico-form-element-background-color);
-  padding: 0 var(--pico-spacing);
-  border-radius: var(--pico-border-radius);
-  width: fit-content;
-}
-
-article,
-input,
-textarea,
-label {
-  opacity: 0.7;
 }

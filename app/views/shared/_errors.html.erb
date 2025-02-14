@@ -2,7 +2,7 @@
   <div class="container">
     <article class="flash-bg">
       <h4 class="flex-between">
-        <%= pluralize(obj.errors.count, 'error') %> prohibited this <%= obj.model_name.param_key %> from being created:
+        <%= pluralize(obj.errors.count, 'error') %> prohibited this <%= obj.model_name.param_key %> from being <%= action_name + 'd' %>:
         <span>&#128683;</span>
       </h4>
       <ul>

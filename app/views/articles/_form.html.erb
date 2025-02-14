@@ -1,9 +1,11 @@
 <%= render 'shared/errors', obj: article %>
 <%= form_for article do |f| %>
-  <%= f.label :title %>
   <%= f.text_field :title, placeholder: true %>
-  <%= f.label :content%>
+  <p></p>
   <%= f.text_area :content, placeholder: true, rows: 6 %>
-  <br>
+  <p></p>
+  <%= f.label :category_ids, 'Select categories associated with your article'%>
+  <%= f.collection_select :category_ids, Category.all, :id, :name, {multiple: true, size: Category.all.size}%>
+  <p></p>
   <%= f.submit %>
 <% end %>

@@ -1,0 +1,6 @@
+<%= render 'shared/errors', obj: category %>
+<%= form_for category do |f| %>
+  <%= f.text_field :name, placeholder: true %>
+  <br>
+  <%= f.submit %>
+<% end %>

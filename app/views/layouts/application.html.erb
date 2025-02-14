@@ -19,12 +19,14 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <%= render 'shared/nav/header' %>
-    <%= custom_line_break  unless params[:controller] == "home"%>
-    <div class="container">
-      <%= yield %>
-    </div>
-    <%= render 'shared/flash' %>
+    <%= content_tag :div, class: "#{"home-background" if params[:controller] == 'home'}" do %>
+      <%= render 'shared/navbar/header' %>
+      <%= custom_line_break  unless params[:controller] == "home"%>
+      <div class="container">
+        <%= yield %>
+      </div>
+      <%= render 'shared/flash' %>
+    <% end %>
     <% if Rails.env.development? %>
       <%= debug(flash) %>
       <p>

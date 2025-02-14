@@ -6,8 +6,6 @@
   </div>
 </article>
 <br>
-<label>
-  <h5 class="margin-0 padding-y-small">All <%= @user.username %>'s articles</h5>
-</label>
+<h5 class="margin-0 padding-y-small">All <%= @user.username %>'s articles</h5>
 <hr><br>
 <%= render 'articles/articles', articles: @user_articles %>

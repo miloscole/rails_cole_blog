@@ -1,0 +1,29 @@
+<ul id="nav-right">
+  <label for="sidebar-active" class="close-btn"></label>
+  <strong>
+    <li>
+      <%= link_to "Articles", articles_path %>
+    </li>
+  </strong>
+  <strong>
+    <li>
+      <%= link_to "Bloggers", users_path %>
+    </li>
+  </strong>
+  <%= render 'shared/navbar/categories_dd' %>
+  <%= render 'shared/navbar/actions_dd' %>
+  <% if logged_in? %>
+    <%= render 'shared/navbar/account_dd' %>
+  <% else %>
+    <strong>
+      <li>
+        <%= link_to "Sign in", signin_path %>
+      </li>
+    </strong>
+    <strong>
+      <li>
+        <%= link_to "Sign up", new_user_path %>
+      </li>
+    </strong>
+  <% end %>
+</ul>

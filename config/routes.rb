@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   delete "signin", to: "sessions#destroy"
 
   resources :articles
+  resources :categories
 
   get "signup", to: "users#new", as: :new_user
   resources :users, except: [ :new ]

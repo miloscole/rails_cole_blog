@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   before_action :require_article_creator_or_admin, only: [ :edit, :update, :destroy ]
 
   def index
-    @articles = Article.paginate(page: params[:page], per_page: 6)
+    @articles = Article.paginate(page: params[:page], per_page: 10)
   end
 
   def show
@@ -47,7 +47,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :content)
+    params.require(:article).permit(:title, :content, category_ids: [])
   end
 
   def set_article

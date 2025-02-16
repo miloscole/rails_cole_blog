@@ -1,6 +1,9 @@
 <%= render 'shared/errors', obj: category %>
-<%= form_for category do |f| %>
-  <%= f.text_field :name, placeholder: true %>
-  <br>
-  <%= f.submit %>
-<% end %>
+<article>
+  <%= form_for category do |f| %>
+    <div class="margin-y-medium">
+      <%= f.text_field :name, placeholder: true %>
+    </div>
+    <%= f.submit %>
+  <% end %>
+</article>

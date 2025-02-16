@@ -10,7 +10,7 @@
         <% end %>
       </span>
     </header>
-    <%= truncate(article.content, length: 200) %>
+    <%= truncate(strip_tags(article.content), length: 100) %>
     <footer class='article-header-footer-positioning'>
       <p class="margin-0 padding-y-small">
         <% if show_action_buttons? article%>

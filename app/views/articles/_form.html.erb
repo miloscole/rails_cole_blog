@@ -1,11 +1,12 @@
 <%= render 'shared/errors', obj: article %>
-<%= form_for article do |f| %>
-  <%= f.text_field :title, placeholder: true %>
-  <p></p>
-  <%= f.text_area :content, placeholder: true, rows: 6 %>
-  <p></p>
-  <%= f.label :category_ids, 'Select categories associated with your article'%>
-  <%= f.collection_select :category_ids, Category.all, :id, :name, {multiple: true, size: Category.all.size}%>
-  <p></p>
-  <%= f.submit %>
-<% end %>
+<article>
+  <%= form_for article do |f| %>
+    <div class="margin-y-medium"><%= f.text_field :title, placeholder: true %></div>
+    <div class="margin-y-medium"><%= f.rich_text_area :content, placeholder: true %></div>
+    <div class="margin-y-medium">
+      <%= f.label :category_ids, 'Select categories associated with your article'%>
+      <%= f.collection_select :category_ids, Category.all, :id, :name, {multiple: true, size: Category.all.size}%>
+    </div>
+    <%= f.submit %>
+  <% end %>
+</article>

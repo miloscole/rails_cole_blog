@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   post "signin", to: "sessions#create"
   delete "signin", to: "sessions#destroy"
 
-  resources :articles
+  resources :articles do
+    resources :comments, only: [ :create, :destroy ]
+  end
+
   resources :categories
 
   get "signup", to: "users#new", as: :new_user

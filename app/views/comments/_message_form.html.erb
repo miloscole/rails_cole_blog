@@ -1,0 +1,8 @@
+<% parent_comment ||= nil %>
+<%= form_with(model: [ article, Comment.new ]) do |form| %>
+  <%= form.hidden_field :parent_id, value: parent_comment.id  if parent_comment %>
+  <fieldset role="group">
+    <%= form.text_area :message, placeholder: placeholder, size: "1x1"%>
+    <%= form.submit sub_text %>
+  </fieldset>
+<% end %>

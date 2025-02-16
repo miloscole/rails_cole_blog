@@ -1,0 +1,38 @@
+<article id="comment">
+  <header>
+    <%= comment.user.username %> <small>(<%= time_ago_in_words(comment.created_at) %>)</small>
+  </header>
+  <p><%=  simple_format(comment.message) %></p>
+  <% if comment.replies.any? %>
+    <footer>
+      <details class="margin-0 margin-y-small">
+        <summary>Replies (<%= comment.replies.size %>)</summary>
+        <% comment.replies.each do |reply| %>
+          <article class="margin-x-large">
+            <%=  render "comments/comment", comment: reply %>
+          </article>
+        <% end %>
+      </details>
+    </footer>
+  <% end %>
+  <footer>
+    <details class="margin-0 margin-y-small">
+      <summary>Reply</summary>
+      <%= render 'comments/message_form', 
+        article: comment.article,  
+        parent_comment: comment,
+        placeholder: "Reply...",
+        sub_text: "Reply"
+      %>
+    </details>
+  </footer>
+  <% if current_user&.admin? %>
+    <footer>
+      <%= link_to "Delete Comment", 
+      article_comment_path(comment.article, comment),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},  
+      role: :button, class: "secondary" 
+    %>
+    </footer>
+  <% end %>
+</article>

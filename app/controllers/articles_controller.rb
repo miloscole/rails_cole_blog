@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [ :show, :edit, :update, :destroy ]
   before_action :require_logged_in_user, except: [ :index, :show ]
+  before_action :set_article, only: [ :show, :edit, :update, :destroy ]
   before_action :require_article_creator_or_admin, only: [ :edit, :update, :destroy ]
 
   def index
@@ -51,7 +51,7 @@ class ArticlesController < ApplicationController
   end
 
   def set_article
-    @article = Article.find(params[:id])
+    @article = Article.find_by(id: params[:id])
   end
 
   def require_article_creator_or_admin

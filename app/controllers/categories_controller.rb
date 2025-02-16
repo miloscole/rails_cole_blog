@@ -51,11 +51,4 @@ class CategoriesController < ApplicationController
   def set_category
     @category = Category.find(params[:id])
   end
-
-  def require_admin
-    unless current_user&.admin?
-      alert custom_msg: "That action is allowed only for admin user"
-      redirect_to root_path
-    end
-  end
 end

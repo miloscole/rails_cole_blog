@@ -19,4 +19,11 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+
+  def require_admin
+    unless current_user&.admin?
+      alert custom_msg: "That action is allowed only for admin user"
+      redirect_to root_path
+    end
+  end
 end

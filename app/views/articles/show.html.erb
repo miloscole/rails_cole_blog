@@ -1,32 +1,12 @@
-<article>
-  <h3 class="margin-unset"><%= @article.title %></h3>
-</article>
-<article>
-  <h6 class="margin-unset">Created by: <%= link_to "#{@article.user&.username}", user_path(@article.user) %></h6>
-</article>
-<article>
-  <header>
-    <br>
-    <div class="flex-between">
-      <span>Actions(comment, share)</span>
-      <span>
-        <% @article.categories&.each do |category| %>
-          <mark><%= category.name %></mark>
-        <% end %>
-      </span>
-    </div>
-    <br>
-  </header>
-  <p><%= simple_format(@article.content) %></p>
-  <footer class='article-header-footer-positioning'>
-    <span class="padding-y-small">
-      <% if show_action_buttons? @article %>
-        <%= link_to "Edit", edit_article_path(@article) %> |
-        <%= link_to "Delete", article_path(@article), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-      <% end %>
-    </span>
-    <span class="padding-y-small">
-      <%= link_to "View all articles", articles_path%>
-    </span>
-  </footer>
-</article>
+<%= render  @article %>
+<%# Comments section %>
+<h5>Comments (<%= @article.comments.size %>)</h5>
+<%= render 'comments/message_form', 
+  article: @article,  
+  placeholder: "What are you thoughts?",
+  sub_text: "Send"
+%>
+<hr>
+<br>
+<%= turbo_stream_from "comments"%>
+<%= render partial: "comments/comment", collection: @article.comments.where(parent_id: nil) %>

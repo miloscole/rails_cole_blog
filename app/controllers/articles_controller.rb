@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   before_action :require_article_creator_or_admin, only: [ :edit, :update, :destroy ]
 
   def index
-    @articles = Article.paginate(page: params[:page], per_page: 10)
+    @articles = Article.with_categories_and_pagination(params[:page], 6)
   end
 
   def show
@@ -41,7 +41,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
     notice
-    redirect_to articles_path
+    redirect_to request.referer || articles_path
   end
 
   private

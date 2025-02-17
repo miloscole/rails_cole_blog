@@ -8,5 +8,5 @@
 %>
 <hr>
 <br>
-<%= turbo_stream_from "comments"%>
-<%= render partial: "comments/comment", collection: @article.comments.where(parent_id: nil) %>
+<%= turbo_stream_from "comments" %>
+<%= render partial: "comments/comment", collection: @article.load_comments%>

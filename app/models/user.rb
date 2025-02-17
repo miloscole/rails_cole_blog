@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  before_save { self.email = email.downcase }
+  include ArticlesPaginatable
 
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -14,4 +14,6 @@ class User < ApplicationRecord
             uniqueness: { case_sensitive: false },
             length: { maximum: 105 },
             format: { with: URI::MailTo::EMAIL_REGEXP }
+
+  before_save { self.email = email.downcase }
 end

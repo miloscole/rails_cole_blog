@@ -11,7 +11,7 @@
     </li>
   </strong>
   <%= render 'shared/navbar/categories_dd' %>
-  <%= render 'shared/navbar/actions_dd' %>
+  <%= render 'shared/navbar/actions_dd' if logged_in? %>
   <% if logged_in? %>
     <%= render 'shared/navbar/account_dd' %>
   <% else %>

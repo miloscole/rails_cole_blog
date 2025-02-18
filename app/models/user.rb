@@ -16,4 +16,16 @@ class User < ApplicationRecord
             format: { with: URI::MailTo::EMAIL_REGEXP }
 
   before_save { self.email = email.downcase }
+
+  generates_token_for :email_confirmation, expires_in: 2.days do
+    email
+  end
+
+  def confirm!
+    update!(confirmed_at: Time.current)
+  end
+
+  def confirmed?
+    confirmed_at.present?
+  end
 end

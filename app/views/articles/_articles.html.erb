@@ -12,12 +12,12 @@
     </header>
     <%= truncate(strip_tags(article.content), length: 100) %>
     <footer class='article-header-footer-positioning'>
-      <p class="margin-0 padding-y-small">
-        <% if show_action_buttons? article%>
+      <% if show_action_buttons? article%>
+        <p class="margin-0 padding-y-small">
           <%= link_to "Edit", edit_article_path(article) %> |
           <%= link_to "Delete", article_path(article), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-        <% end %>
-      </p>
+        </p>
+      <% end %>
       <small>
         Created by: <%= article.user&.username %>,
         <%= time_ago_in_words(article.created_at) %> ago,

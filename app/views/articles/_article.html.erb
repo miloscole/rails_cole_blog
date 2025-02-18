@@ -1,14 +1,15 @@
 <article>
   <h3 class="margin-unset"><%= article.title %></h3>
 </article>
-<article>
+<article class="flex-between">
   <h6 class="margin-unset">Created by: <%= link_to "#{article.user&.username}", user_path(article.user) %></h6>
+  <div><%= article.user&.created_at.strftime("%B %d, %Y") %></div>
 </article>
 <article>
   <header>
     <br>
     <div class="flex-between">
-      <span>Actions(comment, share)</span>
+      <%= render 'share_links_dd', article: article %>
       <span>
         <% article.categories&.each do |category| %>
           <mark><%= category.name %></mark>

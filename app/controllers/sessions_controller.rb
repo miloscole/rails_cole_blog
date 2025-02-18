@@ -6,9 +6,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
 
     if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      notice custom: "Welcome to your account!"
-      redirect_to user_path(user)
+      handle_confirmed_user(user)
     else
       alert now: true
       render "new", status: 422
@@ -18,5 +16,18 @@ class SessionsController < ApplicationController
   def destroy
     session.delete(:user_id)
     redirect_to root_path
+  end
+
+  private
+
+  def handle_confirmed_user(user)
+    if user.confirmed?
+      session[:user_id] = user.id
+      notice custom: "Welcome to your account!"
+      redirect_to user_path(user)
+    else
+      alert now: true, custom: "Your account is not confirmed!"
+      render "new", status: 422
+    end
   end
 end

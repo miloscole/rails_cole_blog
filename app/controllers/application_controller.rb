@@ -15,14 +15,14 @@ class ApplicationController < ActionController::Base
 
   def require_logged_in_user
     unless logged_in?
-      alert custom_msg: "You must be signed in to perform that action!"
+      alert custom: "You must be signed in to perform that action!"
       redirect_to root_path
     end
   end
 
   def require_admin
     unless current_user&.admin?
-      alert custom_msg: "That action is allowed only for admin user"
+      alert custom: "That action is allowed only for admin user"
       redirect_to root_path
     end
   end

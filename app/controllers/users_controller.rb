@@ -20,9 +20,12 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      session[:user_id] = @user.id
-      notice custom: "#{@user.username} welcome to the #{APP_NAME}!"
-      redirect_to user_path(@user)
+      UserMailer.confirmation_email(@user).deliver_now
+      notice custom: "Check your email for account confirmation!"
+      redirect_to root_path
+      # session[:user_id] = @user.id
+      # notice custom: "#{@user.username} welcome to the #{APP_NAME}!"
+      # redirect_to user_path(@user)
     else
       render "new", status: 422
     end
@@ -47,6 +50,19 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def confirm
+    user = User.find_by_token_for(:email_confirmation, params[:token])
+
+    if user
+      user.confirm!
+      notice
+      redirect_to signin_path
+    else
+      alert custom: "Link invalid"
+      redirect_to signup_path
+    end
+  end
+
 
   private
 
@@ -60,7 +76,7 @@ class UsersController < ApplicationController
 
   def require_account_owner
     unless current_user == @user
-      alert custom_msg: "You can perform this action only on your own account!"
+      alert custom: "You can perform this action only on your own account!"
       redirect_to root_path
     end
   end
@@ -69,13 +85,13 @@ class UsersController < ApplicationController
     return if current_user == @user
 
     unless current_user.admin?
-      alert custom_msg: "This action is allowed only for admin!"
+      alert custom: "This action is allowed only for admin!"
       redirect_to root_path
       return
     end
 
     if @user.admin? && current_user != @user
-      alert custom_msg: "Admins cannot delete other admins!"
+      alert custom: "Admins cannot delete other admins!"
       redirect_to root_path
     end
   end

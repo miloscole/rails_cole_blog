@@ -14,7 +14,7 @@ module Flashable
 
     def alert(options = {})
       flash = handle_flash_time_execution options[:now]
-      flash["alert"] = options[:custom_msg] || "Something went wrong, please try again"
+      flash["alert"] = options[:custom] || "Something went wrong, please try again"
     end
 
     private

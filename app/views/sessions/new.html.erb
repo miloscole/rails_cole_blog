@@ -1,8 +1,9 @@
 <%= page_title custom_text: "Sign In"%>
 <br>
-<%= form_with url: signin_path do |f| %>
-  <%= f.email_field :email, required: true, placeholder: true %>
-  <%= f.password_field :password, required: true, autocomplete: "new-password", placeholder: true %>
-  <br>
-  <%= f.submit 'Sign in' %>
-<% end %>
+<article>
+  <%= form_with url: signin_path do |f| %>
+    <div class="margin-y-medium"><%= f.email_field :email, required: true, placeholder: true %></div>
+    <div class="margin-y-medium"><%= f.password_field :password, autocomplete: "new-password", placeholder: true%></div>
+    <%= f.submit 'Sign in' %>
+  <% end %>
+</article>

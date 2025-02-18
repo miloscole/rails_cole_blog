@@ -18,12 +18,7 @@
   <footer>
     <details class="margin-0 margin-y-small">
       <summary>Reply</summary>
-      <%= render 'comments/message_form', 
-        article: comment.article,  
-        parent_comment: comment,
-        placeholder: "Reply...",
-        sub_text: "Reply"
-      %>
+      <%= render 'comments/message_form', article: comment.article, parent_comment: comment %>
     </details>
   </footer>
   <% if current_user&.admin? %>

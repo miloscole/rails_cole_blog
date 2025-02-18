@@ -9,14 +9,16 @@
     <div>
       In this category you can find <%= pluralize(category.articles.size, 'article') %>
     </div>
-    <footer class='flex-between'>
+    <footer class='article-header-footer-positioning'>
       <% if current_user&.admin? %>
         <span>
           <%= link_to "Rename category", edit_category_path(category) %> |
           <%= link_to "Remove category", category_path(category), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
         </span>
       <% end %>
-      <%= link_to "Check articles on this topic", category_path(category) if category.articles.any? %>
+      <div>
+        <%= link_to "Check articles on this topic", category_path(category) if category.articles.any? %>
+      </div>
     </footer>
   </article>
 <% end %>

@@ -8,14 +8,14 @@
     </header>
     <%= user.email %>
     <footer class='article-header-footer-positioning'>
-      <p class="margin-0 padding-y-small">
+      <div class="padding-y-small">
         <% if show_delete_button? user %>
           <%= link_to "Delete", user_path(user), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
         <% end %>
         <% if logged_in? && user.admin? %>
           (ADMIN)
         <% end %>
-      </p>
+      </div>
       <small>
         <%= pluralize(user.articles&.size, 'article') %>
       </small>

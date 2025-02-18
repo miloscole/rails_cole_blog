@@ -13,4 +13,6 @@ Rails.application.routes.draw do
 
   get "signup", to: "users#new", as: :new_user
   resources :users, except: [ :new ]
+
+  get "/users/confirm/:token", to: "users#confirm", as: "confirm_user"
 end

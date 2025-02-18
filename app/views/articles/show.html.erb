@@ -1,11 +1,7 @@
 <%= render  @article %>
 <%# Comments section %>
 <h5>Comments (<%= @article.comments.size %>)</h5>
-<%= render 'comments/message_form', 
-  article: @article,  
-  placeholder: "What are you thoughts?",
-  sub_text: "Send"
-%>
+<%= render 'comments/message_form', article: @article %>
 <hr>
 <br>
 <%= turbo_stream_from "comments" %>

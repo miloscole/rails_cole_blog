@@ -1,0 +1,18 @@
+<small>
+  <details class="dropdown margin-0">
+    <summary role="button" class="outline">
+      <strong>Share</strong>
+    </summary>
+    <ul>
+      <li>
+        <%= link_to "Share to Facebook", share_link(:facebook, article), target: "_blank", rel: "noopener" %>
+      </li>
+      <li>
+        <%= link_to "Share to Linkedin", share_link(:linkedin, article), target: "_blank", rel: "noopener" %>
+      </li>
+      <li>
+        <%= link_to "Share to 𝕏".html_safe, share_link(:x, article), target: "_blank", rel: "noopener" %>
+      </li>
+    </ul>
+  </details>
+</small>

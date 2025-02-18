@@ -1,7 +1,21 @@
 <div class="home-content">
-  <div><strong>Share your</strong></div>
-  <div><strong>Relevant</strong></div>
-  <div><strong>Expertise</strong></div>
-  <div><strong>On <%= APP_NAME %></strong></div>
-  <%= link_to "Join My Blog", '#' %>
+  <article>
+    <header class="flex-between-center">
+      <%= image_tag "about.jpg", class: :about_img %>
+      <hgroup class="margin-0">
+        <h2>Miloš Čolović</h2>
+        <p>Software developer</p>
+      </hgroup>
+    </header>
+    <p>
+      This blog focuses on web development technologies, automation testing and programming in general. 
+      I’ll share insights on frameworks like Ruby on Rails, 
+      as well as best practices for building scalable applications and effective testing strategies. 
+      If you're interested in tech, this space will cover the tools and practices to create robust software solutions.
+    </p>
+    <footer>
+      <h5 class="margin-0 padding-y-small">Share your Relevant Expertise on <%= APP_NAME %></h5>
+      <h5><%= link_to "Join My Blog", new_user_path %></h5>
+    </footer>
+  </article>
 </div>

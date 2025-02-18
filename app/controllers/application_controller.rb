@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :logged_in?
 
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
@@ -25,5 +27,9 @@ class ApplicationController < ActionController::Base
       alert custom: "That action is allowed only for admin user"
       redirect_to root_path
     end
+  end
+
+  def not_found
+    render file: "#{Rails.root}/public/404.html", layout: false
   end
 end

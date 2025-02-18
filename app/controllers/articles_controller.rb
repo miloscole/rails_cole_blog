@@ -51,7 +51,7 @@ class ArticlesController < ApplicationController
   end
 
   def set_article
-    @article = Article.find_by(id: params[:id])
+    @article = Article.find(params[:id])
   end
 
   def require_article_creator_or_admin

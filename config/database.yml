@@ -1,10 +1,9 @@
-# SQLite. Versions 3.8.0 and up are supported.
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem "sqlite3"
-#
 default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+sqlite: &sqlite
   adapter: sqlite3
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
@@ -12,34 +11,41 @@ default: &default
 development:
   primary:
     <<: *default
-    database: storage/development.sqlite3
-  cable:
-    <<: *default
-    database: storage/development_cable.sqlite3
-    migrations_paths: db/cable_migrate
-
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
-test:
-  <<: *default
-  database: storage/test.sqlite3
-
-# Store production database in the storage/ directory, which by default
-# is mounted as a persistent Docker volume in config/deploy.yml.
-production:
-  primary:
-    <<: *default
-    database: storage/production.sqlite3
+    database: rails_cole_blog_development
+    username: rails_cole_blog
+    password: rails_cole_blog
   cache:
-    <<: *default
-    database: storage/production_cache.sqlite3
+    <<: *sqlite
+    database: storage/rails_cole_blog_development_cache.sqlite3
     migrations_paths: db/cache_migrate
-  queue:
-    <<: *default
-    database: storage/production_queue.sqlite3
-    migrations_paths: db/queue_migrate
   cable:
-    <<: *default
-    database: storage/production_cable.sqlite3
+    <<: *sqlite
+    database: storage/rails_cole_blog_development_cable.sqlite3
     migrations_paths: db/cable_migrate
+  queue:
+    <<: *sqlite
+    database: storage/rails_cole_blog_development_queue.sqlite3
+    migrations_paths: db/queue_migrate
+
+test:
+  <<: *sqlite
+  database: storage/rails_cole_blog_test.sqlite3
+
+production:
+  primary: &primary_production
+    <<: *default
+    database: rails_cole_blog_production
+    username: rails_cole_blog
+    password: <%= ENV["RAILS_COLE_BLOG_DATABASE_PASSWORD"] %>
+  cache:
+    <<: *sqlite
+    database: storage/rails_cole_blog_production_cache.sqlite3
+    migrations_paths: db/cache_migrate
+  cable:
+    <<: *sqlite
+    database: storage/rails_cole_blog_production_cable.sqlite3
+    migrations_paths: db/cable_migrate
+  queue:
+    <<: *sqlite
+    database: storage/rails_cole_blog_production_queue.sqlite3
+    migrations_paths: db/queue_migrate

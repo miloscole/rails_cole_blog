@@ -20,7 +20,7 @@ class ArticlesController < ApplicationController
 
     if @article.save
       notice
-      redirect_to articles_path
+      redirect_to @article
     else
       render "new", status: 422
     end
@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
   def update
     if @article.update(article_params)
       notice
-      redirect_to articles_path
+      redirect_to @article
     else
       render "edit", status: 422
     end

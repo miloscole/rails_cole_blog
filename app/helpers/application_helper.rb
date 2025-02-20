@@ -1,20 +1,24 @@
 module ApplicationHelper
-  def custom_line_break(num = 5)
+  def custom_line_break(num = 6)
     ("<br>" * num).html_safe
   end
 
-  def page_title(args = {})
-    case action_name
-    when "new", "create"
-      text = "Create new #{args[:name] || controller_name.singularize}"
-    when "edit", "update"
-      text = "Editing #{args[:name] || controller_name.singularize}"
-    else
-      text = controller_name.humanize
-    end
+  def page_title_el(args = {})
+    title = page_title(args[:name])
 
     content_tag(:article, class: "container") do
-      content_tag(:h4, args[:custom_text] || text, class: "padding-x-medium margin-0")
+      content_tag(:h4, args[:custom_text] || title, class: "padding-x-medium margin-0")
+    end
+  end
+
+  def page_title(name = nil)
+    case action_name
+    when "new", "create"
+      "Create new #{name || controller_name.singularize}"
+    when "edit", "update"
+      "Editing #{name|| controller_name.singularize}"
+    else
+      controller_name.humanize
     end
   end
 end

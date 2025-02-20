@@ -15,5 +15,8 @@ Rails.application.routes.draw do
   resources :users, except: [ :new ]
   get "/users/confirm/:token", to: "users#confirm", as: "confirm_user"
 
-  match "*unmatched", to: "application#not_found", via: :all
+  match "*unmatched",
+    to: "application#not_found",
+    via: :all,
+    constraints: lambda { |req|!req.path.starts_with?("/rails/") }
 end

@@ -9,10 +9,10 @@ class CommentsController < ApplicationController
 
     if @comment.save
       notice
-      redirect_to article_path(article)
+      redirect_to article
     else
       alert
-      redirect_to article_path(article)
+      redirect_to article
     end
   end
 
@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
     article = @comment.article
     @comment.destroy
     notice
-    redirect_to article_path(article)
+    redirect_to article
   end
 
   private

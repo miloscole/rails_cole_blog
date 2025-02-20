@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || APP_NAME %></title>
+    <title><%= (controller_name == "home") ? APP_NAME : page_title %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -12,28 +12,27 @@
     <%= yield :head %>
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-    <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
+    <link rel="apple-touch-icon" href="/icon.svg">
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <%= content_tag :div, class: "#{"home-background" if params[:controller] == 'home'}" do %>
+    <%= content_tag :div, style: "min-height: 100vh" do %>
       <%= render 'shared/navbar/header' %>
-      <%= custom_line_break  unless params[:controller] == "home"%>
+      <%= custom_line_break  unless controller_name == "home"%>
       <div class="container">
-        <%= yield %>
+        <%= yield %> <%= custom_line_break 2 %>
       </div>
       <%= render 'shared/flash' %>
     <% end %>
+    <%= render 'shared/footer' %>
     <% if Rails.env.development? %>
       <%= debug(flash) %>
       <p>
         <%= debug(params) %>
       </p>
-      <%= debug(session[:user_id]) %>
     <% end %>
   </body>
 </html>

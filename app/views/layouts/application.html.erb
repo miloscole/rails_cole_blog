@@ -23,11 +23,12 @@
       <%= render 'shared/navbar/header' %>
       <%= custom_line_break  unless controller_name == "home"%>
       <div class="container">
-        <%= yield %> <%= custom_line_break 2 %>
+        <%= yield %>
       </div>
-      <%= render 'shared/flash' %>
+      <%= custom_line_break 2 unless controller_name == "home" %>
     <% end %>
     <%= render 'shared/footer' %>
+    <%= render 'shared/flash' %>
     <% if Rails.env.development? %>
       <%= debug(flash) %>
       <p>

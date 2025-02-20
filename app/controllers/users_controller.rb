@@ -20,12 +20,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      UserMailer.confirmation_email(@user).deliver_now
+      UserMailer.confirmation_email(@user).deliver_later
       notice custom: "Check your email for account confirmation!"
       redirect_to root_path
-      # session[:user_id] = @user.id
-      # notice custom: "#{@user.username} welcome to the #{APP_NAME}!"
-      # redirect_to user_path(@user)
     else
       render "new", status: 422
     end
@@ -62,7 +59,6 @@ class UsersController < ApplicationController
       redirect_to signup_path
     end
   end
-
 
   private
 

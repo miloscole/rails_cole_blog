@@ -7,7 +7,6 @@ class UsersController < ApplicationController
     @users = User.with_articles_and_pagination(params[:page], 4)
   end
 
-
   def show
     @user_articles = @user.articles_with_pagination(params[:page], 4)
   end
@@ -20,12 +19,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      # Using deliver_now for now until decide to purchase background worker service
       UserMailer.confirmation_email(@user).deliver_now
       notice custom: "Check your email for account confirmation!"
       redirect_to root_path
-      # session[:user_id] = @user.id
-      # notice custom: "#{@user.username} welcome to the #{APP_NAME}!"
-      # redirect_to user_path(@user)
     else
       render "new", status: 422
     end
@@ -59,10 +56,9 @@ class UsersController < ApplicationController
       redirect_to signin_path
     else
       alert custom: "Link invalid"
-      redirect_to signup_path
+      redirect_to new_user_path
     end
   end
-
 
   private
 

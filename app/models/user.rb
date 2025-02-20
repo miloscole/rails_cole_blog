@@ -14,6 +14,9 @@ class User < ApplicationRecord
             uniqueness: { case_sensitive: false },
             length: { maximum: 105 },
             format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :password,
+            presence: true,
+            length: { minimum: 8 }
 
   before_save { self.email = email.downcase }
 
@@ -22,7 +25,7 @@ class User < ApplicationRecord
   end
 
   def confirm!
-    update!(confirmed_at: Time.current)
+    update_attribute!(:confirmed_at, Time.current)
   end
 
   def confirmed?

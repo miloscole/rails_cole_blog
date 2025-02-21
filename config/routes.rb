@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   resources :users, except: [ :new ]
   get "/users/confirm/:token", to: "users#confirm", as: :confirm_user
 
+  get "manifest", to: "rails/pwa#manifest", as: :pwa_manifest
+  get "service-worker", to: "rails/pwa#service_worker", as: :pwa_service_worker
+
   match "*unmatched",
     to: "application#not_found",
     via: :all,

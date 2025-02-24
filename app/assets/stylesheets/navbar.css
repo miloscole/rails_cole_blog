@@ -22,10 +22,6 @@
   flex-direction: row;
 }
 
-.navbar #overlay {
-  display: none;
-}
-
 @media (max-width: 1350px) {
   .navbar {
     padding: 0.4rem 7rem;
@@ -70,11 +66,12 @@
     margin-top: 0.5rem;
   }
 
-  .navbar #sidebar-active:checked ~ #nav-right {
+  .navbar #nav-right.open {
     right: 0;
+    z-index: 2;
   }
 
-  .navbar #sidebar-active:checked ~ #overlay {
+  .navbar #overlay {
     display: block;
     height: 100%;
     width: 100%;

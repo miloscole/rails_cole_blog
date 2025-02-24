@@ -1,0 +1,33 @@
+<div data-controller="sidenav">
+  <div class="burger-menu" data-action="click->sidenav#open"></div>
+  <ul id="nav-right" data-sidenav-target="menu">
+    <div class="close-btn" data-action="click->sidenav#close"></div>
+    <strong>
+      <li>
+        <%= link_to "Articles", articles_path %>
+      </li>
+    </strong>
+    <strong>
+      <li>
+        <%= link_to "Bloggers", users_path %>
+      </li>
+    </strong>
+    <%= render 'shared/navbar/dropdowns/categories' %>
+    <%= render 'shared/navbar/dropdowns/actions' if logged_in? %>
+    <% if logged_in? %>
+      <%= render 'shared/navbar/dropdowns/account' %>
+    <% else %>
+      <strong>
+        <li>
+          <%= link_to "Sign in", signin_path %>
+        </li>
+      </strong>
+      <strong>
+        <li>
+          <%= link_to "Sign up", new_user_path %>
+        </li>
+      </strong>
+    <% end %>
+  </ul>
+  <div id="overlay" data-sidenav-target="overlay" data-action="click->sidenav#close" hidden></div>
+</div>

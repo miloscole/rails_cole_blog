@@ -172,12 +172,16 @@
 
 /* Custom */
 
-.flash-bg {
-  background-color: var(--flash-color);
+.no-scroll {
+  overflow: hidden;
 }
 
 .pointer {
   cursor: pointer;
+}
+
+.flash-bg {
+  background-color: var(--flash-color);
 }
 
 .divider {

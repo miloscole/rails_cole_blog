@@ -1,9 +1,15 @@
 <%= render 'shared/errors', obj: user %>
 <article>
   <%= form_for user do |f| %>
-    <div class="margin-y-medium"><%= f.text_field :username, required: true, placeholder: true %></div>
-    <div class="margin-y-medium"><%= f.email_field :email, required: true, placeholder: true %></div>
-    <div class="margin-y-medium"><%= f.password_field :password, placeholder: true, autocomplete: "new-password" %></div>
+    <div class="margin-y-medium">
+      <%= f.text_field :username, required: true, placeholder: true, minlength: 3, maxlength: 25 %>
+    </div>
+    <div class="margin-y-medium">
+      <%= f.email_field :email, required: true, placeholder: true, maxlength: 105 %>
+    </div>
+    <div class="margin-y-medium">
+      <%= f.password_field :password, placeholder: true, autocomplete: "new-password", minlength: 8 %>
+    </div>
     <%= f.submit submit_text ||= 'Signup' %>
   <% end %>
 </article>

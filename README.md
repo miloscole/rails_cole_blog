@@ -1,24 +1,18 @@
-# README
+# RailsColeBlog
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple blog application built from scratch using Ruby on Rails, without scaffolding or Rails helpers. The application includes essential blog features and follows best practices.
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+- **Basic User authentication and authorization**
+- **CRUD for Articles, Categories, Comments, Users**
+- **Responsive design for mobile and desktop**
 
-* System dependencies
+## Live Demo
 
-* Configuration
+You can check out the live version on Render: https://coleblog-8fei.onrender.com/  
+Note: This is running on a free instance, which means it may take up to a minute to load when inactive.
 
-* Database creation
+## Screenshots
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+![Image](https://github.com/user-attachments/assets/b79494c0-9690-4466-86d1-dff27dcbe4d6)

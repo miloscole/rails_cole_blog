@@ -2,21 +2,22 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="sidenav"
 export default class extends Controller {
+  // By default page will be redirected before we are able to close the sidenav.
+  // Temporary solution with preventDefaultOnLinkClicked to prevent flickering on navigation.  
+  // Consider using Turbo Frames or improving state handling and avoid preventDefault. 
+
   static targets = ["menu", "overlay"]
 
-  // Temporary solution with style.display (open and disconnect) to prevent flickering on navigation.  
-  // Downside: Close animation is skipped when clicking links.  
-  // Consider using Turbo Frames or improving state handling and avoid document.querySelector.  
+  connect() {
+    this.menuTarget.querySelectorAll('a').forEach(link => {
+      link.setAttribute('data-action', 'click->sidenav#preventDefaultOnLinkClicked')
+    });
+  }
 
   open() {
-    this.menuTarget.style.display = 'flex'
-    this.overlayTarget.style.display = 'block'
-
-    setTimeout(() => {
-      this.menuTarget.classList.add("open")
-      this.overlayTarget.removeAttribute("hidden")
-      document.body.classList.add("no-scroll")
-    }, 100);
+    this.menuTarget.classList.add("open")
+    this.overlayTarget.removeAttribute("hidden")
+    document.body.classList.add("no-scroll")
   }
 
   close() {
@@ -25,11 +26,16 @@ export default class extends Controller {
     document.body.classList.remove("no-scroll")
   }
 
-  disconnect() {
+  preventDefaultOnLinkClicked(event) {
     if (window.innerWidth < 993) {
-      document.querySelector('#nav-right').style.display = 'none'
-      document.querySelector('#overlay').style.display = 'none'
+      event.preventDefault()
+      const url = event.currentTarget.getAttribute('href')
+      this.close()
+      Turbo.visit(url)
+      // Need to rethink about animation on link clicked since we need to have delay before redirecting.
+      // setTimeout(() => {
+      //   Turbo.visit(url)
+      // }, 300);
     }
   }
 }
-

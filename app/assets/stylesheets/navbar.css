@@ -13,10 +13,6 @@
   margin-top: 0.45rem !important;
 }
 
-.navbar #sidebar-active {
-  display: none !important;
-}
-
 .navbar #nav-right {
   display: flex;
   flex-direction: row;

@@ -39,9 +39,10 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
+    destroyed_from_article = request.referer.include?(article_path(@article))
     @article.destroy
     notice
-    redirect_to request.referer || articles_path
+    destroyed_from_article ? redirect_to(articles_path) : redirect_to(request.referer)
   end
 
   private

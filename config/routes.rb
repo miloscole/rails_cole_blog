@@ -21,5 +21,5 @@ Rails.application.routes.draw do
   match "*unmatched",
     to: "application#not_found",
     via: :all,
-    constraints: lambda { |req|!req.path.starts_with?("/rails/") }
+    constraints: lambda { |req| !req.path.starts_with?("/rails/") }
 end

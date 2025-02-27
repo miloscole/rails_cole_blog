@@ -200,10 +200,6 @@
   }
 }
 
-.fade-in-fade-out {
-  animation: fade-inout 5.2s;
-}
-
 .article-header-footer-positioning {
   display: flex;
   align-items: center;

@@ -78,7 +78,7 @@ class UsersController < ApplicationController
   end
 
   def permissions_for_destroy
-    return if current_user == @user
+    return session.delete(:user_id) if current_user == @user
 
     unless current_user.admin?
       alert custom: "This action is allowed only for admin!"

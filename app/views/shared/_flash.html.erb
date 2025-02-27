@@ -1,6 +1,6 @@
 <% flash.each do |key, value| %>
   <div>
-    <div class="flash-bg flash-msg fade-in-fade-out" data-controller="flash">
+    <div class="flash-bg flash-msg" data-controller="flash">
       <p class="flex-between">
         <span class="<%=key%>-icon"></span>
         <span><%= key == 'notice' ? 'Success!' : 'Error!' %></span>

@@ -7,12 +7,15 @@ export default class extends Controller {
 
   connect() {
     this.intervalId = setInterval(() => {
-      this.progressTarget.value++;
-    }, this.defaultInterval);
+      this.progressTarget.value++
+    }, this.defaultInterval)
+
+    const animationDuration = 100 * (this.defaultInterval + 1)
+    this.element.style.animation = "fade-inout " + animationDuration + "ms"
 
     this.timeoutId = setTimeout(() => {
       this.close()
-    }, 100 * (this.defaultInterval + 1));
+    }, animationDuration);
   }
 
   close() {
